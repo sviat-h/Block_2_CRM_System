@@ -1,0 +1,1 @@
+INSERT INTO crm_system_db.public.users (id, username, password, role, active) VALUES (1, 'admin', 'admin', 'ADMIN', true);
