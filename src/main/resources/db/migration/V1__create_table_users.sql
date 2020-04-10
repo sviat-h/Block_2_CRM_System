@@ -1,8 +1,9 @@
 CREATE TABLE users
 (
     id serial not null primary key,
-    username   varchar(60) not null unique,
-    password varchar (60) not null,
-    role varchar (10) not null,
-    active boolean not null
+    first_name   varchar(60) not null,
+    last_name   varchar(60) not null,
+    age integer not null,
+    phone varchar (15) not null,
+    account_id integer not null unique
 );

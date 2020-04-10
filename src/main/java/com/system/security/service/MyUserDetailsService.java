@@ -2,7 +2,7 @@ package com.system.security.service;
 
 
 import com.system.model.enums.Role;
-import com.system.service.impl.UserServiceImpl;
+import com.system.service.impl.AccountServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,19 +19,19 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class MyUserDetailsService implements UserDetailsService {
 
-    private final UserServiceImpl userService;
+    private final AccountServiceImpl accountService;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return new User(s, userService.findUserByUsername(s).getPassword(),
-                getGrantedAuthorities(userService.findUserByUsername(s)));
+        return new User(s, accountService.findUserByUsername(s).getPassword(),
+                getGrantedAuthorities(accountService.findUserByUsername(s)));
     }
 
-    private Collection<GrantedAuthority> getGrantedAuthorities(com.system.model.entity.User user) {
+    private Collection<GrantedAuthority> getGrantedAuthorities(com.system.model.entity.Account account) {
 
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
-        if (user.getRole().equals(Role.ADMIN)) {
+        if (account.getRole().equals(Role.ADMIN)) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
         } else {
             grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
