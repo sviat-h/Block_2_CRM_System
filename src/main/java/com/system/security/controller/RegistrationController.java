@@ -1,11 +1,13 @@
 package com.system.security.controller;
 
 import com.system.model.entity.Account;
+import com.system.model.entity.User;
+import com.system.model.enums.Role;
 import com.system.security.service.SecurityService;
 import com.system.security.validator.UserValidator;
-import com.system.service.AccountService;
+import com.system.service.impl.AccountServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,33 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RegistrationController {
 
-    private final AccountService accountService;
+    private final AccountServiceImpl accountService;
 
     private final SecurityService securityService;
 
     private final UserValidator userValidator;
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
-        model.addAttribute("userForm", new Account());
-
-        return "registration";
-    }
-
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registration(@RequestBody Account account, BindingResult bindingResult, Model model) {
+    public ResponseEntity<?> registration(@RequestBody Account account, BindingResult bindingResult) throws Exception {
+
         userValidator.validate(account, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "Error";
+            throw new IllegalArgumentException("Error");
         }
 
+        account.setRole(Role.USER);
+        account.setUser(new User(account.getUser().getFirstName(), account.getUser().getLastName(), account.getUser().getAge(), account.getUser().getPhone(), account));
         accountService.save(account);
 
-        //TODO FIX AUTO LOGIN
-        securityService.autoLogin(account.getUsername(), account.getConfirmPassword());
-
-
-        return "Success";
+        return securityService.autoLogin(account);
     }
 }
