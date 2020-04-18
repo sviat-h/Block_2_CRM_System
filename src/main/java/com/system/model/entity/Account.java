@@ -1,11 +1,13 @@
 package com.system.model.entity;
 
+import com.system.model.enums.Role;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 
 @Data
+@EqualsAndHashCode
 @Entity
 @Table(name = "accounts")
 public class Account {
@@ -27,8 +29,28 @@ public class Account {
     private String confirmPassword;
 
     @Column(columnDefinition = "varchar", name = "role")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
     private User user;
+
+    public Account(String username, String email, String password, String confirmPassword) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
+    public Account(String username, String email, String password, String confirmPassword, Role role, User user) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.role = role;
+        this.user = user;
+    }
+
+    public Account() {
+    }
 }

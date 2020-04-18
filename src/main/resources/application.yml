@@ -3,7 +3,8 @@ spring:
     database: postgresql
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+#    open-in-view: false
   datasource:
     platform: org.hibernate.dialect.PostgreSQL9Dialect
     url: jdbc:postgresql://localhost:5432/crm_system_db
