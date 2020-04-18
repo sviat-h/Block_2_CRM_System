@@ -1,6 +1,6 @@
 package com.system.security.service;
 
-
+import com.system.model.entity.Account;
 import com.system.model.enums.Role;
 import com.system.service.impl.AccountServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -22,17 +22,20 @@ public class MyUserDetailsService implements UserDetailsService {
     private final AccountServiceImpl accountService;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return new User(s, accountService.findUserByUsername(s).getPassword(),
-                getGrantedAuthorities(accountService.findUserByUsername(s)));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Account account = accountService.findAccountByUsername(username);
+        return new User(username, account.getPassword(),
+                getGrantedAuthorities(account));
     }
 
-    private Collection<GrantedAuthority> getGrantedAuthorities(com.system.model.entity.Account account) {
+    private Collection<GrantedAuthority> getGrantedAuthorities(Account account) {
 
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
         if (account.getRole().equals(Role.ADMIN)) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
+        } else if (account.getRole().equals(Role.MODER)) {
+            grantedAuthorities.add(new SimpleGrantedAuthority("MODER"));
         } else {
             grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
         }
