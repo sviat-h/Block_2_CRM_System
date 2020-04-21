@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 @RestController
 @RequiredArgsConstructor
 public class RegistrationController {
@@ -30,7 +32,7 @@ public class RegistrationController {
         userValidator.validate(account, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            throw new IllegalArgumentException("Error");
+            throw new IllegalArgumentException(Objects.requireNonNull(bindingResult.getFieldError()).getField());
         }
 
         account.setRole(Role.USER);

@@ -26,7 +26,7 @@ public class Account {
     private String password;
 
     @Column(name = "confirm_password")
-    private String confirmPassword;
+    private transient String confirmPassword;
 
     @Column(columnDefinition = "varchar", name = "role")
     @Enumerated(EnumType.STRING)
