@@ -1,7 +1,6 @@
 package com.system.model.entity;
 
-import com.system.model.enums.Brand;
-import com.system.model.enums.TypeOfCar;
+import com.system.model.enums.Category;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,8 +9,8 @@ import javax.persistence.*;
 @Data
 @EqualsAndHashCode
 @Entity
-@Table(name = "cars")
-public class Car {
+@Table(name = "food_product")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +28,7 @@ public class Car {
     @Column(name = "availability")
     private boolean availability;
 
-    @Column(columnDefinition = "varchar", name = "type")
+    @Column(columnDefinition = "varchar", name = "category")
     @Enumerated(EnumType.STRING)
-    private TypeOfCar typeOfCar;
-
-    @Column(columnDefinition = "varchar", name = "brand")
-    @Enumerated(EnumType.STRING)
-    private Brand brand;
+    private Category category;
 }
