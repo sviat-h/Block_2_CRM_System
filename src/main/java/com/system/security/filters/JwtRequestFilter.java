@@ -5,6 +5,7 @@ import com.system.model.entity.Account;
 import com.system.security.models.AuthenticationRequest;
 import com.system.security.models.AuthenticationResponse;
 import com.system.security.service.MyUserDetailsService;
+import com.system.security.service.PassEncoder;
 import com.system.security.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -64,7 +65,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     public static ResponseEntity<?> getResponseEntity(AuthenticationRequest authenticationRequest, AuthenticationManager authenticationManager, MyUserDetailsService userDetailsService, JwtUtil jwtTokenUtil) throws Exception {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
+                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), PassEncoder.hashPassword(authenticationRequest.getPassword()))
             );
         } catch (BadCredentialsException e) {
             throw new Exception("Incorrect username or password", e);

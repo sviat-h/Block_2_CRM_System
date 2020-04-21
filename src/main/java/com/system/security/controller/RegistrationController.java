@@ -3,6 +3,7 @@ package com.system.security.controller;
 import com.system.model.entity.Account;
 import com.system.model.entity.User;
 import com.system.model.enums.Role;
+import com.system.security.service.PassEncoder;
 import com.system.security.service.SecurityService;
 import com.system.security.validator.UserValidator;
 import com.system.service.impl.AccountServiceImpl;
@@ -35,6 +36,7 @@ public class RegistrationController {
             throw new IllegalArgumentException(Objects.requireNonNull(bindingResult.getFieldError()).getField());
         }
 
+        account.setPassword(PassEncoder.hashPassword(account.getPassword()));
         account.setRole(Role.USER);
         account.setUser(new User(account.getUser().getFirstName(), account.getUser().getLastName(), account.getUser().getAge(), account.getUser().getPhone(), account));
         accountService.save(account);
