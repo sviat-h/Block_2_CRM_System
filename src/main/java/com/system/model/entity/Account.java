@@ -25,7 +25,6 @@ public class Account {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "confirm_password")
     private transient String confirmPassword;
 
     @Column(columnDefinition = "varchar", name = "role")

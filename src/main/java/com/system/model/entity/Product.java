@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode
 @Entity
-@Table(name = "food_product")
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -20,7 +21,7 @@ public class Product {
     private String name;
 
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "description")
     private String description;
@@ -28,7 +29,14 @@ public class Product {
     @Column(name = "availability")
     private boolean availability;
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     @Column(columnDefinition = "varchar", name = "category")
     @Enumerated(EnumType.STRING)
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "orders_id")
+    Order order;
 }

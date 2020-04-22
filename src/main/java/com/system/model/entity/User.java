@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode
@@ -28,11 +29,16 @@ public class User {
     private String phone;
 
     @OneToOne
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-    public User(String firstName, String lastName, Integer age, String phone,Account account) {
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "user_order",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Order> orders;
+
+    public User(String firstName, String lastName, Integer age, String phone, Account account) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
