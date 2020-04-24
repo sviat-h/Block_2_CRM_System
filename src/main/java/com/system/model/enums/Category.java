@@ -12,5 +12,5 @@ public enum Category {
     FRESH_VEGETABLE_FRUIT,
     FROZEN,
     MEAT_SEAFOOD,
-    SNACK_FOOD,
+    SNACK_FOOD
 }
