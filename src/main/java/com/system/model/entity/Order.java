@@ -24,8 +24,12 @@ public class Order {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
 
-    @OneToMany(mappedBy = "order")
-    private List<Product> products;
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @OneToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 
     @ManyToMany(mappedBy = "orders")
     private List<User> users;

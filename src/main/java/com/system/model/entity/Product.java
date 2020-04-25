@@ -36,7 +36,6 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "orders_id")
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
     Order order;
 }
