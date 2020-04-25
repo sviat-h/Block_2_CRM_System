@@ -1,12 +1,15 @@
 package com.system.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.system.model.enums.Role;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "accounts")
@@ -25,6 +28,7 @@ public class Account {
     @Column(name = "password")
     private String password;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private transient String confirmPassword;
 
     @Column(columnDefinition = "varchar", name = "role")
@@ -48,8 +52,5 @@ public class Account {
         this.confirmPassword = confirmPassword;
         this.role = role;
         this.user = user;
-    }
-
-    public Account() {
     }
 }

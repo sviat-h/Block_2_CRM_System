@@ -6,6 +6,8 @@ import com.system.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +23,12 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void save(Account account) {
         accountRepository.save(account);
+    }
+
+    @Override
+    public Account findAccountById(Integer id) {
+
+        return Optional.ofNullable(accountRepository.findAccountById(id))
+                .orElseThrow(() -> new IllegalArgumentException("User not found."));
     }
 }

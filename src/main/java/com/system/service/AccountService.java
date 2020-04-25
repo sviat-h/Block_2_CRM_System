@@ -8,4 +8,6 @@ public interface AccountService {
     Account findAccountByUsername(String username);
 
     void save(Account account);
+
+    Account findAccountById(Integer id);
 }
