@@ -17,7 +17,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account findAccountByUsername(String username) {
-        return accountRepository.findAccountByUsername(username);
+        return Optional.ofNullable(accountRepository.findAccountByUsername(username))
+                .orElseThrow(() -> new IllegalArgumentException("User not found."));
     }
 
     @Override
@@ -27,8 +28,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account findAccountById(Integer id) {
-
         return Optional.ofNullable(accountRepository.findAccountById(id))
                 .orElseThrow(() -> new IllegalArgumentException("User not found."));
+    }
+
+    @Override
+    public void updateAccountById(Integer id, Account account) {
+
+        accountRepository.updateAccountById(id, account.getUsername(), account.getEmail(), account.getRole());
     }
 }

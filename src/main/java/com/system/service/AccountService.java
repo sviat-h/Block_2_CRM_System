@@ -10,4 +10,6 @@ public interface AccountService {
     void save(Account account);
 
     Account findAccountById(Integer id);
+
+    void updateAccountById(Integer id, Account account);
 }
