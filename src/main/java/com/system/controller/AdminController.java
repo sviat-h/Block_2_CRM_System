@@ -14,11 +14,13 @@ public class AdminController {
 
     @GetMapping(value = "/getAccount/{id}")
     public Account getAccount(@PathVariable Integer id) {
+
         return accountService.findAccountById(id);
     }
 
     @PutMapping(value = "/updateAccount/{id}")
     public Account updateAccount(@PathVariable Integer id, @RequestBody Account account) {
+
         accountService.updateAccountById(id, account);
         return accountService.findAccountById(id);
     }

@@ -13,4 +13,12 @@ public interface ProductService {
     Set<Category> getAllCategories();
 
     List<Product> getProductsByCategory(Category category);
+
+    Product addProduct(Product product);
+
+    void updateProductById(Integer id, Product product);
+
+    Product findProductById(Integer id);
+
+    Integer deleteProductById(Integer id);
 }

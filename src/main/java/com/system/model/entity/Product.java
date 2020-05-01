@@ -1,5 +1,6 @@
 package com.system.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.system.model.enums.Category;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,6 +37,7 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    Order order;
+    private Order order;
 }
