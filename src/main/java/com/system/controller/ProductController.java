@@ -16,7 +16,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping(value = "/all")
+    @GetMapping(value = "/categories")
     public Set<Category> getAllCategories() {
 
         return productService.getAllCategories();
