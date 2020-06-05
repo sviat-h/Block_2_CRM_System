@@ -33,12 +33,14 @@ class ProductServiceImpl implements ProductService {
 
     @Override
     public Product addProduct(Product product) {
+        validateProduct(product);
 
         return productRepository.save(product);
     }
 
     @Override
     public void updateProductById(Integer id, Product product) {
+        validateProduct(product);
 
         productRepository.updateProductById(id, product.getName(), product.getPrice(), product.getDescription(), product.isAvailability(), product.getQuantity(), product.getCategory());
     }
@@ -51,5 +53,31 @@ class ProductServiceImpl implements ProductService {
     @Override
     public Integer deleteProductById(Integer id) {
         return productRepository.deleteProductById(id);
+    }
+
+    private void validateProduct(Product product) {
+        isAvailable(product);
+        validatePrice(product);
+        validateQuantity(product);
+    }
+
+    private void isAvailable(Product product) {
+        if (product.getQuantity() > 0) {
+            product.setAvailability(true);
+        } else {
+            product.setAvailability(false);
+        }
+    }
+
+    private void validatePrice(Product product) {
+        if (product.getPrice().doubleValue() <= 0) {
+            throw new ExceptionInInitializerError("The price cannot be less or equal to 0");
+        }
+    }
+
+    private void validateQuantity(Product product) {
+        if (product.getQuantity() < 0) {
+            throw new ExceptionInInitializerError("Quantity of products cannot be less than 0");
+        }
     }
 }

@@ -1,11 +1,10 @@
 package com.system.controller;
 
 import com.system.model.entity.Order;
+import com.system.model.entity.Product;
 import com.system.service.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +18,10 @@ public class OrderController {
     @GetMapping(value = "/all")
     public List<Order> getOrders() {
         return orderService.getAllOrders();
+    }
+
+    @PostMapping(value = "/buy")
+    public Order buy(@RequestBody List<Product> products) {
+        return orderService.buy(products);
     }
 }

@@ -17,8 +17,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account findAccountByUsername(String username) {
-        return Optional.ofNullable(accountRepository.findAccountByUsername(username))
-                .orElseThrow(() -> new IllegalArgumentException("User not found."));
+        return accountRepository.findAccountByUsername(username);
     }
 
     @Override

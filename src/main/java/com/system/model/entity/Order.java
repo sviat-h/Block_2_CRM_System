@@ -1,7 +1,9 @@
 package com.system.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +11,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "orders")
@@ -27,10 +31,17 @@ public class Order {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @OneToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Product> products;
 
-    @ManyToMany(mappedBy = "orders")
-    private List<User> users;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Account> accounts;
+
+    public Order(LocalDate date, BigDecimal totalPrice, Integer quantity, List<Product> products, List<Account> accounts) {
+        this.date = date;
+        this.totalPrice = totalPrice;
+        this.quantity = quantity;
+        this.products = products;
+        this.accounts = accounts;
+    }
 }

@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -38,6 +39,13 @@ public class Account {
 
     @OneToOne(mappedBy = "account", cascade = CascadeType.ALL)
     private User user;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "orders_accounts",
+            joinColumns = @JoinColumn(name = "accounts_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Order> orders;
 
     public Account(String username, String email, String password, String confirmPassword) {
         this.username = username;

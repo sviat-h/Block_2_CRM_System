@@ -32,6 +32,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
 
+    public static String currentUsername;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -47,6 +49,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            currentUsername = username;
 
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 

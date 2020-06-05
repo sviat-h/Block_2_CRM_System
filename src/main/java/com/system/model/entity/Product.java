@@ -1,12 +1,12 @@
 package com.system.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.system.model.enums.Category;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode
@@ -37,7 +37,9 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    private Order order;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @JoinTable(name = "orders_accounts",
+            joinColumns = @JoinColumn(name = "accounts_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Order> orders;
 }
