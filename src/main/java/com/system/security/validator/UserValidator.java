@@ -40,5 +40,25 @@ public class UserValidator implements Validator {
         if (!account.getConfirmPassword().equals(account.getPassword())) {
             errors.rejectValue("confirmPassword", "Different.userForm.password");
         }
+
+        if (!account.getEmail().contains("@") || !account.getEmail().contains(".")) {
+            errors.rejectValue("email", "Content.userForm.email");
+        }
+
+        if (account.getUser().getFirstName().length() < 4 || account.getUser().getFirstName().length() > 32) {
+            errors.rejectValue("firstName", "Size.userForm.name");
+        }
+
+        if (account.getUser().getLastName().length() < 4 || account.getUser().getLastName().length() > 32) {
+            errors.rejectValue("lastName", "Size.userForm.name");
+        }
+
+        if (account.getUser().getAge() <= 0) {
+            errors.rejectValue("age", "Content.userForm.age");
+        }
+
+        if (!account.getUser().getPhone().contains("+") || !account.getUser().getPhone().substring(1).matches("-?\\d+(\\.\\d+)?")) {
+            errors.rejectValue("phone", "Content.userForm.phone");
+        }
     }
 }

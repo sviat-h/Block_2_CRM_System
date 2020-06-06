@@ -35,7 +35,6 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Account account;
 
-
     public User(String firstName, String lastName, Integer age, String phone, Account account) {
         this.firstName = firstName;
         this.lastName = lastName;
