@@ -1,7 +1,7 @@
 package com.system.service;
 
-import com.system.model.entity.Order;
-import com.system.model.entity.Product;
+import com.system.model.entities.Order;
+import com.system.model.entities.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

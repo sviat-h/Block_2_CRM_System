@@ -1,4 +1,4 @@
-package com.system.model.entity;
+package com.system.model.entities;
 
 import com.system.model.enums.Category;
 import lombok.Data;

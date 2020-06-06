@@ -1,6 +1,6 @@
 package com.system.service.impl;
 
-import com.system.model.entity.Product;
+import com.system.model.entities.Product;
 import com.system.model.enums.Category;
 import com.system.repository.ProductRepository;
 import com.system.service.ProductService;

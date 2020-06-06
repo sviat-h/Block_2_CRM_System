@@ -1,6 +1,6 @@
 package com.system.repository;
 
-import com.system.model.entity.Product;
+import com.system.model.entities.Product;
 import com.system.model.enums.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

@@ -1,7 +1,7 @@
 package com.system.security.filters;
 
 
-import com.system.model.entity.Account;
+import com.system.model.entities.Account;
 import com.system.security.models.AuthenticationRequest;
 import com.system.security.models.AuthenticationResponse;
 import com.system.security.service.MyUserDetailsService;

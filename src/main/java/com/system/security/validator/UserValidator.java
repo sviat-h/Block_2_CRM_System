@@ -1,6 +1,6 @@
 package com.system.security.validator;
 
-import com.system.model.entity.Account;
+import com.system.model.entities.Account;
 import com.system.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

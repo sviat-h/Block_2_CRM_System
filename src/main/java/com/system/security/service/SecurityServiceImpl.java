@@ -1,6 +1,6 @@
 package com.system.security.service;
 
-import com.system.model.entity.Account;
+import com.system.model.entities.Account;
 import com.system.security.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

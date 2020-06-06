@@ -1,7 +1,7 @@
 package com.system.security.controller;
 
-import com.system.model.entity.Account;
-import com.system.model.entity.User;
+import com.system.model.entities.Account;
+import com.system.model.entities.User;
 import com.system.model.enums.Role;
 import com.system.security.service.PassEncoder;
 import com.system.security.service.SecurityService;

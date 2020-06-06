@@ -1,6 +1,6 @@
 package com.system.service;
 
-import com.system.model.entity.Product;
+import com.system.model.entities.Product;
 import com.system.model.enums.Category;
 import org.springframework.stereotype.Service;
 

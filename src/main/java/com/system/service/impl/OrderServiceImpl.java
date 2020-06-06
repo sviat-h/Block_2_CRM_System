@@ -1,8 +1,8 @@
 package com.system.service.impl;
 
-import com.system.model.entity.Account;
-import com.system.model.entity.Order;
-import com.system.model.entity.Product;
+import com.system.model.entities.Account;
+import com.system.model.entities.Order;
+import com.system.model.entities.Product;
 import com.system.repository.AccountRepository;
 import com.system.repository.OrderRepository;
 import com.system.repository.ProductRepository;

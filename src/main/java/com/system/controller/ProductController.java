@@ -1,6 +1,6 @@
 package com.system.controller;
 
-import com.system.model.entity.Product;
+import com.system.model.entities.Product;
 import com.system.model.enums.Category;
 import com.system.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +47,6 @@ public class ProductController {
         if (productService.deleteProductById(id).equals(1)) {
             return "Successfully deleted.";
         }
-
         return "Product with such id not found.";
     }
 }

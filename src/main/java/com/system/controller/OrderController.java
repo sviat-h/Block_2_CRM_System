@@ -1,7 +1,7 @@
 package com.system.controller;
 
-import com.system.model.entity.Order;
-import com.system.model.entity.Product;
+import com.system.model.entities.Order;
+import com.system.model.entities.Product;
 import com.system.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

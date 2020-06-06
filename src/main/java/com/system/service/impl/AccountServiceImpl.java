@@ -1,6 +1,6 @@
 package com.system.service.impl;
 
-import com.system.model.entity.Account;
+import com.system.model.entities.Account;
 import com.system.repository.AccountRepository;
 import com.system.service.AccountService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.system.security.service;
 
-import com.system.model.entity.Account;
+import com.system.model.entities.Account;
 import com.system.model.enums.Role;
 import com.system.service.impl.AccountServiceImpl;
 import lombok.RequiredArgsConstructor;
