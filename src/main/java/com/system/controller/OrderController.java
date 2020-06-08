@@ -24,4 +24,9 @@ public class OrderController {
     public Order buy(@RequestBody List<Product> products) {
         return orderService.buy(products);
     }
+
+    @GetMapping(value = "/find/{id}")
+    public List<Order> findOrdersByAccountId(@PathVariable Integer id) {
+        return orderService.findOrdersByAccountId(id);
+    }
 }

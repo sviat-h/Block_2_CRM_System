@@ -1,5 +1,6 @@
 package com.system.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.system.model.enums.Category;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,6 +38,7 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "orders_accounts",
             joinColumns = @JoinColumn(name = "accounts_id"),

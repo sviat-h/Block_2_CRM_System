@@ -12,4 +12,6 @@ public interface OrderService {
     List<Order> getAllOrders();
 
     Order buy(List<Product> product);
+
+    List<Order> findOrdersByAccountId(Integer id);
 }
