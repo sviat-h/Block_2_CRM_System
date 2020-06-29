@@ -62,4 +62,27 @@ public class Account {
         this.role = role;
         this.user = user;
     }
+
+    public Account(Integer id, String username, String email, String password, String confirmPassword, Role role, User user) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.role = role;
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", role=" + role +
+                ", user=" + user +
+                '}';
+    }
 }

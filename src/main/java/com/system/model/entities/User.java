@@ -42,4 +42,23 @@ public class User {
         this.phone = phone;
         this.account = account;
     }
+
+    public User(Integer id, String firstName, String lastName, Integer age, String phone) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", phone='" + phone + '\'' +
+                '}';
+    }
 }
