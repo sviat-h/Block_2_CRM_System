@@ -1,0 +1,26 @@
+spring:
+#  main:
+#    allow-bean-definition-overriding: true
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+#    open-in-view: false
+  datasource:
+    platform: org.hibernate.dialect.PostgreSQL9Dialect
+    url: jdbc:postgresql://localhost:5432/crm_system_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+    url: jdbc:postgresql://localhost:5432/crm_system_db
+    password: postgres
+    check-location: true
+    locations: classpath:db/migration
+    schemas: public
+    baseline-on-migrate: true
+server:
+  port: 8081
